@@ -1,0 +1,44 @@
+/*
+ * Specific styles of signin component
+ */
+/*
+ * General styles
+ */
+body, html {
+    height: 100%;
+    /*background: rgb(243, 243, 243);*
+    color: rgba(0,0,0,0.6);*/
+    font-family: RobotoDraft,Roboto;
+}
+
+
+.side-nav .collapsible>li {
+    padding-right: 0;
+    padding-left: 0;
+}
+.side-nav .collapsible li a.active {
+    background-color: #294a65;
+}
+.panel-foto {
+    height: 240px;
+    background-color: #3f729b;
+}
+
+.panel-foto img {
+    height: 90px;
+}
+
+.txt_direccion {
+    height: 50px;
+}
+.txt_datos_lugar {
+    font-size: 1.2em;
+}
+#map {
+  width: 100%;
+  height: 100%;
+}
+#map2 {
+  width: 100%;
+  height: 100%;
+}

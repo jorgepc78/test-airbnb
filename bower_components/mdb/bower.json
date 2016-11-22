@@ -1,0 +1,26 @@
+{
+  "name": "mdb",
+  "authors": [
+    ""
+  ],
+  "description": "material-bootstrap",
+  "main": [
+    "css/bootstrap4.min.css",
+    "css/mdb4.min.css",
+    "js/jquery-3.1.1.min.js",
+    "js/tether4.min.js",
+    "js/bootstrap4.min.js",
+    "js/mdb4.min.js",
+    "font/roboto/*"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,0 +1,30 @@
+<!--Page heading-->
+<div class="row">
+    <div class="col-md-9">
+        <h1 class="h1-responsive">{{vm.city + ', ' + vm.state}}
+            <small class="text-muted">{{vm.country}}.</small>
+        </h1>
+    </div>
+    <div class="col-md-3">
+        <div ng-show="vm.cargando" class="text-xs-center">
+              <div class="preloader-wrapper small active">
+                <div class="spinner-layer spinner-blue-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <h3 class="h1-responsive" ng-show="!vm.cargando"><small class="text-muted">{{vm.totalElementos}} Lugares encontrados</small></h3>
+    </div>
+</div>
+<!--/.Page heading-->
+<hr>
+
+<div class="card" ng-style="vm.mapContainer">
+    <div id="map" data-tap-disabled="true"></div>
+</div>

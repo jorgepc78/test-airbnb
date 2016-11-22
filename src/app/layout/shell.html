@@ -1,0 +1,82 @@
+﻿<div data-ng-controller="Shell as vm"> 
+<!--Double navigation-->
+<header>
+
+    <!-- Sidebar navigation -->
+    <ul id="slide-out" class="side-nav fixed custom-scrollbar navbar-dark bg-primary"">
+
+        <!-- Logo -->
+        <li>
+            <div class="panel-foto text-xs-center">
+                <div class="row pt-3 mb-1">
+                    <div class="col-xs-12">
+                        <img ng-src="{{vm.usuario.foto}}" class="rounded-circle img-responsive z-depth-2">
+                    </div>
+                </div>
+                <h4 class="font-weight-bold">{{vm.usuario.nombre}}</h4>
+                <p>{{vm.usuario.apellidos}}</p>
+            </div>
+        </li>
+        <!--/. Logo -->
+
+        <!--Search Form-->
+        <!-- <li>
+            <form class="search-form" role="search">
+                <div class="form-group waves-light">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+            </form>
+        </li> -->
+        <!--/.Search Form-->
+
+        <!-- Side navigation links -->
+        <li>
+            <ul class="collapsible collapsible-accordion">
+                <li ui-sref-active="active">
+                    <a ui-sref="principal.listado" class="collapsible-header waves-effect" ui-sref-active="active" ng-click="vm.cerrar()"><i class="fa fa-list"></i> Listado</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="principal.mapa" class="collapsible-header waves-effect" ui-sref-active="active" ng-click="vm.cerrar()"><i class="fa fa-map-o"></i> Mapa</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="principal.favoritos" class="collapsible-header waves-effect" ui-sref-active="active" ng-click="vm.cerrar()"><i class="fa fa-heart-o"></i> Favoritos</a>
+                </li>
+            </ul>
+        </li>
+        <!--/. Side navigation links -->
+
+    </ul>
+    <!--/. Sidebar navigation -->
+
+    <!--Navbar-->
+    <nav class="navbar navbar-fixed-top scrolling-navbar double-nav navbar-dark bg-primary"">
+
+        <!-- SideNav slide-out button -->
+        <div class="pull-left">
+            <a href="javascript;" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
+        </div>
+
+        <!-- Breadcrumb-->
+        <div class="breadcrumb-dn">
+            <!-- <p>Airbnb</p> -->
+        </div>
+
+        <ul class="nav navbar-nav pull-right">
+
+            <li class="nav-item">
+                <a class="nav-link" ng-click="vm.logout()"><i class="fa fa-sign-out fa-lg"></i> <span class="hidden-sm-down">Cerrar sesi&oacute;n</span></a>
+            </li>
+        </ul>
+
+    </nav>
+    <!--/.Navbar-->
+
+</header>
+<!--/Double navigation-->
+
+<!--Main layout-->
+<main>
+    <div ui-view class="container-fluid"></div>
+</main>
+<!--/Main layout-->
+</div>

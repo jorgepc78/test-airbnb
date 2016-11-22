@@ -1,0 +1,72 @@
+    <!--Navigation-->
+    <header>
+
+        <!--Navbar-->
+        <nav class="navbar navbar-dark navbar-fixed-top primary-color">
+
+            <div class="container text-xs-center">
+                <a class="navbar-brand" href="#" style="float: none !important;">Bienvenido a Airbnb</a>
+            </div>
+
+        </nav>
+        <!--/.Navbar-->
+
+    </header>
+    <!--/Navigation-->
+
+    <div class="pt-6 text-xs-center">
+
+          <div class="row">
+              <div class="col-md-4">
+              </div>
+              <div class="col-md-4">
+
+                  <!--Card-->
+                  <div class="card">
+
+                      <!--Card image-->
+                      <img class="img-fluid" src="http://mdbootstrap.com/images/regular/nature/img%20(28).jpg" alt="Card image cap">
+                      <!--/.Card image-->
+
+                      <!--Card content-->
+                      <div class="card-block">
+                          <!--Title-->
+                          <h4 class="card-title">Inicia sesi&oacute;n</h4>
+                          <!--Text-->
+                          <div class="row text-xs-center">
+                            <div class="col-md-12">
+                              <button type="button" class="btn btn-gplus" ng-click="vm.login('google')"><i class="fa fa-google-plus left"></i> Google</button>
+                            </div>
+                          </div>
+                          <div class="row text-xs-center">
+                            <div class="col-md-12">
+                              <button type="button" class="btn btn-fb" ng-click="vm.login('facebook')"><i class="fa fa-facebook left"></i> Facebook</button>
+                            </div>
+                          </div>
+                      </div>
+                      <!--/.Card content-->
+
+                  </div>
+                  <!--/.Card-->
+                                <div ng-show="vm.cargando" class="text-xs-center">
+                                      <div class="preloader-wrapper active">
+                                        <div class="spinner-layer spinner-blue-only">
+                                          <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                          </div><div class="gap-patch">
+                                            <div class="circle"></div>
+                                          </div><div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                </div>
+                
+              </div>
+              <div class="col-md-4">
+              </div>
+
+          </div>
+
+
+    </div>

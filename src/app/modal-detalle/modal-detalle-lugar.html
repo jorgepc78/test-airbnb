@@ -1,0 +1,125 @@
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Detalle del lugar</h4>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <!--Grid-->
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <!--First column-->
+                        <div class="col-md-3 text-xs-center">
+                            <h4>Galer&iacute;a</h4>
+                            <hr>
+                            <!--Carousel Wrapper-->
+                            <div id="carousel-example-1" class="carousel slide carousel-fade" data-ride="carousel">
+
+                                <!--Slides-->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="carousel-item {{ ($index == 0 ? 'active' : '') }}" ng-repeat="item in vm.datosLugar.fotos">
+                                        <img ng-src="{{item}}" alt="">
+                                    </div>
+                                </div>
+                                <!--/.Slides-->
+
+                                <!--Controls-->
+                                <a class="left carousel-control" href="" role="button" data-slide="prev" ng-click="vm.prevFoto()">
+                                    <span class="icon-prev" aria-hidden="true"></span>
+                                    <span class="sr-only">Previo</span>
+                                </a>
+                                <a class="right carousel-control" href="" role="button" data-slide="next" ng-click="vm.nextFoto()">
+                                    <span class="icon-next" aria-hidden="true"></span>
+                                    <span class="sr-only">Siguiente</span>
+                                </a>
+                                <!--/.Controls-->
+                            </div>
+                            <!--/.Carousel Wrapper-->
+                        </div>
+                        <!--/.First column-->
+
+                        <!--Second column-->
+                        <div class="col-md-5 text-xs-center">
+                            <!--Title-->
+                            <a><h4>Descripci&oacute;n</h4></a>
+                            <hr>
+
+                            <div class="card card-cascade wider">
+                                <!--Card content-->
+                                <div class="text-xs-center">
+                                    <!--Category & Title-->
+                                    <h5>{{vm.datosLugar.ciudad}}</h5>
+                                    <h4 class="card-title"><strong>{{vm.datosLugar.nombre}}</strong></h4>
+                                    <!--Rating-->
+                                    <ul class="rating">
+                                        <li><i class="fa {{ (vm.datosLugar.calificacion >= 1 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                                        <li><i class="fa {{ (vm.datosLugar.calificacion >= 2 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                                        <li><i class="fa {{ (vm.datosLugar.calificacion >= 3 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                                        <li><i class="fa {{ (vm.datosLugar.calificacion >= 4 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                                        <li><i class="fa {{ (vm.datosLugar.calificacion >= 5 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                                    </ul>
+                                    <!--Description-->
+                                    <p class="card-text">{{vm.datosLugar.direccion}}</p>
+                                    <p class="card-text">{{vm.datosLugar.descripcion}}</p>
+                                    
+                                    <div class="row text-xs-left">
+                                        <div class="col-sm-6">
+                                                <h4 class="feature-title txt_datos_lugar">Tipo de propiedad</h4>
+                                                <p class="grey-text">{{vm.datosLugar.tipo_propiedad}}</p>
+
+                                                <h4 class="feature-title txt_datos_lugar">Tipo habitaci&oacute;n</h4>
+                                                <p class="grey-text">{{vm.datosLugar.tipo_habitacion}}</p>
+
+                                                <h4 class="feature-title txt_datos_lugar">N&uacute;m huespedes</h4>
+                                                <p class="grey-text">{{vm.datosLugar.num_huespedes}}</p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                                <h4 class="feature-title txt_datos_lugar">Ba&ntilde;os</h4>
+                                                <p class="grey-text">{{vm.datosLugar.num_banos}}</p>
+
+                                                <h4 class="feature-title txt_datos_lugar">Dormitorios</h4>
+                                                <p class="grey-text">{{vm.datosLugar.num_dormitorios}}</p>
+
+                                                <h4 class="feature-title txt_datos_lugar">Camas</h4>
+                                                <p class="grey-text">{{vm.datosLugar.num_camas}}</p>
+                                        </div>
+                                    </div>
+                                    <!--Card footer-->
+                                    <div class="card-footer">
+                                        <span class="center">COSTO: {{vm.datosLugar.precio}}$ {{vm.datosLugar.moneda}} POR NOCHE</span>
+                                    </div>
+                                </div>
+                                <!--/.Card content-->
+                            </div>
+
+                        </div>
+                        <!--/.Second column-->
+
+                        <!--Third column-->
+                        <div class="col-md-4 text-xs-center">
+                            <h4>Ubicaci&oacute;n</h4>
+                            <hr>
+                            <div class="text-xs-center">
+                                
+                              <div style="width: 600px; height: 650px;">
+                                  <div id="map2" data-tap-disabled="true"></div>
+                              </div>
+                                <!-- <img styel="width: 100%;height: auto;" ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{vm.datosLugar.lat}},{{vm.datosLugar.lng}}&zoom=18&size=500x800&maptype=roadmap&markers=color:red%7C{{vm.datosLugar.lat}},{{vm.datosLugar.lng}}&key=AIzaSyCdMRoAOlM5HjpiklvdvLjCkdrRGrkfue4" class="z-depth-1-half map-container" alt="Donde estamos"> -->
+                            </div>
+                        </div>
+                        <!--/.Third column-->
+                    </div>
+                </div>
+                <!--/.Grid-->
+
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+                <a ng-show="vm.mostrarBtnFav" class="btn btn-danger danger-color-dark waves-effect" ng-click="vm.agregaFavoritos()"><i class="fa fa-heart left"></i> Agregar a favoritos</a>
+                <a ng-show="!vm.mostrarBtnFav" class="btn btn-outline-danger waves-effect"><i class="fa fa-heart left"></i><i class="fa fa-check left"></i> </a>
+                <button type="button" class="btn btn-primary waves-effect" ng-click="$dismiss()" >Cerrar</button>
+            </div>
+        </div>
+        <!--/.Content-->

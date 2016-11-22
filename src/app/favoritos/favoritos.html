@@ -1,0 +1,238 @@
+<!--Page heading-->
+<div class="row">
+    <div class="col-md-9">
+        <h1 class="h1-responsive">Mis lugares favoritos</h1>
+    </div>
+    <div class="col-md-3">
+        <div ng-show="vm.cargando" class="text-xs-center">
+              <div class="preloader-wrapper small active">
+                <div class="spinner-layer spinner-blue-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <h3 class="h1-responsive" ng-show="!vm.cargando"><small class="text-muted">{{vm.listaAlojamientosConfig.totalElementos}} Lugares guardados</small></h3>
+    </div>
+</div>
+<!--/.Page heading-->
+<hr>
+
+<!--First row-->
+<div class="row animated fadeInRight" ng-repeat="item in vm.listaAlojamientosFiltrado" ng-if="$index % 3 == 0">
+            <!--First column-->
+            <div class="col-md-4" ng-show="( ($index) < vm.listaAlojamientosFiltrado.length)">
+                    <!--Card-->
+                    <div class="card card-cascade wider">
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img ng-src="{{vm.listaAlojamientosFiltrado[$index].img_principal}}" class="img-fluid" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-block text-xs-center">
+                            <!--Category & Title-->
+                            <h5>{{vm.listaAlojamientosFiltrado[$index].ciudad}}, {{vm.listaAlojamientosFiltrado[$index].estado}} {{vm.listaAlojamientosFiltrado[$index].pais}}</h5>
+                            <h4 class="card-title txt_direccion"><strong>{{vm.listaAlojamientosFiltrado[$index].nombre}}</strong></h4>
+                            <!--Rating-->
+                            <ul class="rating">
+                                <li><i class="fa {{ (vm.listaAlojamientosFiltrado[$index].calificacion >= 1 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                                <li><i class="fa {{ (vm.listaAlojamientosFiltrado[$index].calificacion >= 2 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                                <li><i class="fa {{ (vm.listaAlojamientosFiltrado[$index].calificacion >= 3 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                                <li><i class="fa {{ (vm.listaAlojamientosFiltrado[$index].calificacion >= 4 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                                <li><i class="fa {{ (vm.listaAlojamientosFiltrado[$index].calificacion >= 5 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                            </ul>
+                            <!--Description-->
+                            <p class="card-text txt_direccion">{{vm.listaAlojamientosFiltrado[$index].direccion}}</p>
+                            
+                            <div class="row text-xs-left">
+                                <div class="col-sm-6">
+                                        <h4 class="feature-title txt_datos_lugar">Tipo de propiedad</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index].tipo_propiedad}}</p>
+
+                                        <h4 class="feature-title txt_datos_lugar">Tipo habitaci&oacute;n</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index].tipo_habitacion}}</p>
+
+                                        <h4 class="feature-title txt_datos_lugar">N&uacute;m huespedes</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index].num_huespedes}}</p>
+                                </div>
+                                <div class="col-sm-6">
+                                        <h4 class="feature-title txt_datos_lugar">Ba&ntilde;os</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index].num_banos}}</p>
+
+                                        <h4 class="feature-title txt_datos_lugar">Dormitorios</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index].num_dormitorios}}</p>
+
+                                        <h4 class="feature-title txt_datos_lugar">Camas</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index].num_camas}}</p>
+                                </div>
+                            </div>
+                            <div class="px-2 mt-1 mb-2">
+                                <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{vm.listaAlojamientosFiltrado[$index].lat}},{{vm.listaAlojamientosFiltrado[$index].lng}}&zoom=15&size=400x200&maptype=roadmap&markers=color:red%7C{{vm.listaAlojamientosFiltrado[$index].lat}},{{vm.listaAlojamientosFiltrado[$index].lng}}&key=AIzaSyCdMRoAOlM5HjpiklvdvLjCkdrRGrkfue4" class="z-depth-1-half map-container" alt="Donde estamos">
+                            </div>
+                            <!--Card footer-->
+                            <div class="card-footer">
+                                <span class="left">{{vm.listaAlojamientosFiltrado[$index].precio}}$ {{vm.listaAlojamientosFiltrado[$index].moneda}}</span>
+                                <span class="right">
+                                <a class="btn btn-danger waves-effect" ng-click="vm.eliminaFavoritos(vm.listaAlojamientosFiltrado[$index].id)"><i class="fa fa-close left"></i> eliminar favoritos</a>
+                                </span>
+                            </div>
+                        </div>
+                        <!--/.Card content-->
+                    </div>
+                    <!--/.Card-->
+            </div>
+            <!--/.First column-->
+
+            <!--Second column-->
+            <div class="col-md-4" ng-show="( ($index+1) < vm.listaAlojamientosFiltrado.length)">
+                    <!--Card-->
+                    <div class="card card-cascade wider">
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img ng-src="{{vm.listaAlojamientosFiltrado[$index+1].img_principal}}" class="img-fluid" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-block text-xs-center">
+                            <!--Category & Title-->
+                            <h5>{{vm.listaAlojamientosFiltrado[$index+1].ciudad}}, {{vm.listaAlojamientosFiltrado[$index+1].estado}} {{vm.listaAlojamientosFiltrado[$index+1].pais}}</h5>
+                            <h4 class="card-title txt_direccion"><strong>{{vm.listaAlojamientosFiltrado[$index+1].nombre}}</strong></h4>
+                            <!--Rating-->
+                            <ul class="rating">
+                                <li><i class="fa {{ (vm.listaAlojamientosFiltrado[$index+1].calificacion >= 1 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                                <li><i class="fa {{ (vm.listaAlojamientosFiltrado[$index+1].calificacion >= 2 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                                <li><i class="fa {{ (vm.listaAlojamientosFiltrado[$index+1].calificacion >= 3 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                                <li><i class="fa {{ (vm.listaAlojamientosFiltrado[$index+1].calificacion >= 4 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                                <li><i class="fa {{ (vm.listaAlojamientosFiltrado[$index+1].calificacion >= 5 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                            </ul>
+                            <!--Description-->
+                            <p class="card-text txt_direccion">{{vm.listaAlojamientosFiltrado[$index+1].direccion}}</p>
+                            
+                            <div class="row text-xs-left">
+                                <div class="col-sm-6">
+                                        <h4 class="feature-title txt_datos_lugar">Tipo de propiedad</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index+1].tipo_propiedad}}</p>
+
+                                        <h4 class="feature-title txt_datos_lugar">Tipo habitaci&oacute;n</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index+1].tipo_habitacion}}</p>
+
+                                        <h4 class="feature-title txt_datos_lugar">N&uacute;m huespedes</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index+1].num_huespedes}}</p>
+                                </div>
+                                <div class="col-sm-6">
+                                        <h4 class="feature-title txt_datos_lugar">Ba&ntilde;os</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index+1].num_banos}}</p>
+
+                                        <h4 class="feature-title txt_datos_lugar">Dormitorios</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index+1].num_dormitorios}}</p>
+
+                                        <h4 class="feature-title txt_datos_lugar">Camas</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index+1].num_camas}}</p>
+                                </div>
+                            </div>
+                            <div class="px-2 mt-1 mb-2">
+                                <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{vm.listaAlojamientosFiltrado[$index+1].lat}},{{vm.listaAlojamientosFiltrado[$index+1].lng}}&zoom=15&size=400x200&maptype=roadmap&markers=color:red%7C{{vm.listaAlojamientosFiltrado[$index+1].lat}},{{vm.listaAlojamientosFiltrado[$index+1].lng}}&key=AIzaSyCdMRoAOlM5HjpiklvdvLjCkdrRGrkfue4" class="z-depth-1-half map-container" alt="Donde estamos">
+                            </div>
+                            <!--Card footer-->
+                            <div class="card-footer">
+                                <span class="left">{{vm.listaAlojamientosFiltrado[$index+1].precio}}$ {{vm.listaAlojamientosFiltrado[$index+1].moneda}}</span>
+                                <span class="right">
+                                    <a class="btn btn-danger waves-effect" ng-click="vm.eliminaFavoritos(vm.listaAlojamientosFiltrado[$index+1].id)"><i class="fa fa-close left"></i> eliminar favoritos</a>
+                                </span>
+                            </div>
+                        </div>
+                        <!--/.Card content-->
+                    </div>
+                    <!--/.Card-->
+            </div>
+            <!--/.Second column-->
+
+            <!--Third column-->
+            <div class="col-md-4" ng-show="( ($index+2) < vm.listaAlojamientosFiltrado.length)">
+                    <!--Card-->
+                    <div class="card card-cascade wider">
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img ng-src="{{vm.listaAlojamientosFiltrado[$index+2].img_principal}}" class="img-fluid" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-block text-xs-center">
+                            <!--Category & Title-->
+                            <h5>{{vm.listaAlojamientosFiltrado[$index+2].ciudad}}, {{vm.listaAlojamientosFiltrado[$index+2].estado}} {{vm.listaAlojamientosFiltrado[$index+2].pais}}</h5>
+                            <h4 class="card-title txt_direccion"><strong>{{vm.listaAlojamientosFiltrado[$index+2].nombre}}</strong></h4>
+                            <!--Rating-->
+                            <ul class="rating">
+                                <li><i class="fa {{ (vm.listaAlojamientosFiltrado[$index+2].calificacion >= 1 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                                <li><i class="fa {{ (vm.listaAlojamientosFiltrado[$index+2].calificacion >= 2 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                                <li><i class="fa {{ (vm.listaAlojamientosFiltrado[$index+2].calificacion >= 3 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                                <li><i class="fa {{ (vm.listaAlojamientosFiltrado[$index+2].calificacion >= 4 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                                <li><i class="fa {{ (vm.listaAlojamientosFiltrado[$index+2].calificacion >= 5 ? 'fa-star' : 'fa-star-o') }}"></i></li>
+                            </ul>
+                            <!--Description-->
+                            <p class="card-text txt_direccion">{{vm.listaAlojamientosFiltrado[$index+2].direccion}}</p>
+                            
+                            <div class="row text-xs-left">
+                                <div class="col-sm-6">
+                                        <h4 class="feature-title txt_datos_lugar">Tipo de propiedad</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index+2].tipo_propiedad}}</p>
+
+                                        <h4 class="feature-title txt_datos_lugar">Tipo habitaci&oacute;n</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index+2].tipo_habitacion}}</p>
+
+                                        <h4 class="feature-title txt_datos_lugar">N&uacute;m huespedes</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index+2].num_huespedes}}</p>
+                                </div>
+                                <div class="col-sm-6">
+                                        <h4 class="feature-title txt_datos_lugar">Ba&ntilde;os</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index+2].num_banos}}</p>
+
+                                        <h4 class="feature-title txt_datos_lugar">Dormitorios</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index+2].num_dormitorios}}</p>
+
+                                        <h4 class="feature-title txt_datos_lugar">Camas</h4>
+                                        <p class="grey-text">{{vm.listaAlojamientosFiltrado[$index+2].num_camas}}</p>
+                                </div>
+                            </div>
+                            <div class="px-2 mt-1 mb-2">
+                                <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{vm.listaAlojamientosFiltrado[$index+2].lat}},{{vm.listaAlojamientosFiltrado[$index+2].lng}}&zoom=15&size=400x200&maptype=roadmap&markers=color:red%7C{{vm.listaAlojamientosFiltrado[$index+2].lat}},{{vm.listaAlojamientosFiltrado[$index+2].lng}}&key=AIzaSyCdMRoAOlM5HjpiklvdvLjCkdrRGrkfue4" class="z-depth-1-half map-container" alt="Donde estamos">
+                            </div>
+                            <!--Card footer-->
+                            <div class="card-footer">
+                                <span class="left">{{vm.listaAlojamientosFiltrado[$index+2].precio}}$ {{vm.listaAlojamientosFiltrado[$index+2].moneda}}</span>
+                                <span class="right">
+                                    <a class="btn btn-danger waves-effect" ng-click="vm.eliminaFavoritos(vm.listaAlojamientosFiltrado[$index+2].id)"><i class="fa fa-close left"></i> eliminar favoritos</a>
+                                </span>
+                            </div>
+                        </div>
+                        <!--/.Card content-->
+                    </div>
+                    <!--/.Card-->
+            </div>
+            <!--/.Third column-->
+</div>
+<!--/.First row-->
+<hr>
+<!--Pagination-->
+<nav class="row text-xs-center">
+    <a class="btn btn-primary primary-color-dark waves-effect" ng-click="vm.cambiarPagina('atras')"><i class="fa fa-chevron-left left"></i> Previo</a>
+     {{vm.listaAlojamientosConfig.paginaActual + 1}}/{{vm.listaAlojamientosConfig.numPaginas}}
+    <a class="btn btn-primary primary-color-dark waves-effect" ng-click="vm.cambiarPagina('adelante')">Siguiente <i class="fa fa-chevron-right right"></i></a>
+</nav>
+<!--/.Pagination-->
+<br>
